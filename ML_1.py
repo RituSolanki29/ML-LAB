@@ -78,14 +78,16 @@ def highOccurnce(s):
     count= {}
 
     for i in s:
-        if i != '':
+        if i != ' ':
             count[i] = count.get(i,0)+1
     
     character = max(count, key = count.get)
     max_count = count[character]
+
+    return character, max_count
         
 def main():
-    s = input("Enter the String")
+    s = input("Enter the String:")
     char, count = highOccurnce(s)
     print("Highest occurence charcter is'{char}' with count {count}")
 
