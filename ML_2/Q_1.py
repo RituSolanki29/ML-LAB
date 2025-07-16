@@ -3,9 +3,11 @@ import pandas as pd
 
 # Loading Purchase data
 f=pd.read_excel("Lab Session Data.xlsx", sheet_name="Purchase data")
+
 # Segregating matrix a and c
 A = f[['Candies (#)', 'Mangoes (Kg)', 'Milk Packets (#)']].values
 C = f['Payment (Rs)'].values
+
 # dimensionality of vector space
 print("Matrix A:\n", A)
 print("\n Dimensionality of A:", A.shape[1])
