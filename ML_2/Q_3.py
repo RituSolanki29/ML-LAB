@@ -9,8 +9,8 @@ df = pd.read_excel('Lab Session Data.xlsx', sheet_name="IRCTC Stock Price", engi
 df['Date'] = pd.to_datetime(df['Date'])
 
 # Extract required columns
-price_col = df.columns[3]   # Assuming column D is the 4th column
-chg_col = df.columns[8]     # Assuming column I is the 9th column
+price_col = df.columns[3]   
+chg_col = df.columns[8]     
 
 prices = df[price_col].dropna().tolist()
 
