@@ -3,36 +3,32 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.spatial import distance
 
-# Load Excel file
-df = pd.read_excel('DataSet2.xlsx', engine='openpyxl')
+# Load your dataset 
+df = pd.read_excel('DataSet2.xlsx')  
 
-# Only keep numeric columns
-df = df.select_dtypes(include=[np.number])
+# Pick two actual feature columns (normalized values)
+feature1 = 'smart_5_normalized'
+feature2 = 'smart_9_normalized'
 
-# Drop rows with NaN only if necessary (keep most rows)
-df = df.dropna()
+# Drop rows with missing values in selected features
+df_clean = df[[feature1, feature2]].dropna()
 
+# Ensure at least two valid rows to compare
+if len(df_clean) < 2:
+    raise ValueError("❌ Not enough rows with valid values for the selected features.")
 
-# If there are fewer than 2 rows, raise an error
-if df.shape[0] < 2:
-    raise ValueError("Not enough rows in the dataset after cleaning to compare vectors.")
+# Select two rows (as vectors)
+vec1 = df_clean.iloc[0].values
+vec2 = df_clean.iloc[1].values
 
-# Select two rows (feature vectors)
-vec1 = df.iloc[0].values
-vec2 = df.iloc[1].values
-
-# Calculate Minkowski distances from r = 1 to 10
+# Calculate Minkowski distances for r = 1 to 10
 r_values = list(range(1, 11))
-distances = []
+distances = [distance.minkowski(vec1, vec2, p=r) for r in r_values]
 
-for r in r_values:
-    mink_dist = distance.minkowski(vec1, vec2, p=r)
-    distances.append(mink_dist)
-
-# Plot the distances
+# Plot
 plt.plot(r_values, distances, marker='o')
-plt.title('Minkowski Distance (r = 1 to 10)')
-plt.xlabel('r value')
-plt.ylabel('Distance')
+plt.title("Minkowski Distance (r = 1 to 10)")
+plt.xlabel("r (Order)")
+plt.ylabel("Distance")
 plt.grid(True)
 plt.show()
