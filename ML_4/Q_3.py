@@ -8,7 +8,6 @@ X = np.random.uniform(1, 10, 20)
 Y = np.random.uniform(1, 10, 20)
 
 # Step 2: Create class labels based on a simple rule
-# If X + Y > 10 → class 1 (Red), else class 0 (Blue)
 classes = np.where(X + Y > 10, 1, 0)
 
 # Step 3: Create a DataFrame (optional, for easy display)
