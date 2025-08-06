@@ -25,14 +25,14 @@ y_train_pred = knn.predict(X_train)
 y_test_pred = knn.predict(X_test)
 
 # Confusion Matrix and Metrics for Training Data
-print("=== Training Data Evaluation ===")
+print("Training Data Evaluation ")
 print("Confusion Matrix:")
 print(confusion_matrix(y_train, y_train_pred))
 print("\nClassification Report:")
 print(classification_report(y_train, y_train_pred))
 
 # Confusion Matrix and Metrics for Test Data
-print("\n=== Test Data Evaluation ===")
+print("\nTest Data Evaluation ")
 print("Confusion Matrix:")
 print(confusion_matrix(y_test, y_test_pred))
 print("\nClassification Report:")
