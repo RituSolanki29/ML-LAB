@@ -8,7 +8,7 @@ X_train = np.random.uniform(1, 10, 20)
 Y_train = np.random.uniform(1, 10, 20)
 train_data = np.column_stack((X_train, Y_train))
 
-# Class rule: Class 1 (Red) if X + Y > 10, else Class 0 (Blue)
+# Class rule: Class 1 
 train_labels = np.where(X_train + Y_train > 10, 1, 0)
 
 # Step 2: Generate Test Set (100x100 grid = 10,000 points)
@@ -24,7 +24,7 @@ knn.fit(train_data, train_labels)
 # Step 4: Predict test data classes
 test_preds = knn.predict(test_data)
 
-# Step 5: Plot decision boundary (test set with predicted labels)
+# Step 5: Plot decision boundary 
 plt.figure(figsize=(10, 8))
 
 # Plot predicted class 0 (Blue)
