@@ -1,34 +1,31 @@
-import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.spatial import distance
+import pandas as pd
 
-# Load your dataset 
-df = pd.read_excel('DataSet2.xlsx')  
+# Step 1: Generate 20 random data points for features X and Y
+np.random.seed(0)  
+X = np.random.uniform(1, 10, 20)
+Y = np.random.uniform(1, 10, 20)
 
-# Pick two actual feature columns (normalized values)
-feature1 = 'smart_5_normalized'
-feature2 = 'smart_9_normalized'
+# Step 2: Create class labels based on a simple rule
+# If X + Y > 10 → class 1 (Red), else class 0 (Blue)
+classes = np.where(X + Y > 10, 1, 0)
 
-# Drop rows with missing values in selected features
-df_clean = df[[feature1, feature2]].dropna()
+# Step 3: Create a DataFrame (optional, for easy display)
+df = pd.DataFrame({'X': X, 'Y': Y, 'Class': classes})
 
-# Ensure at least two valid rows to compare
-if len(df_clean) < 2:
-    raise ValueError("❌ Not enough rows with valid values for the selected features.")
+# Step 4: Plot the scatter plot
+plt.figure(figsize=(8, 6))
 
-# Select two rows (as vectors)
-vec1 = df_clean.iloc[0].values
-vec2 = df_clean.iloc[1].values
+# Plot class 0 (Blue)
+plt.scatter(df[df['Class'] == 0]['X'], df[df['Class'] == 0]['Y'], color='blue', label='Class 0 (Blue)', s=80)
 
-# Calculate Minkowski distances for r = 1 to 10
-r_values = list(range(1, 11))
-distances = [distance.minkowski(vec1, vec2, p=r) for r in r_values]
+# Plot class 1 (Red)
+plt.scatter(df[df['Class'] == 1]['X'], df[df['Class'] == 1]['Y'], color='red', label='Class 1 (Red)', s=80)
 
-# Plot
-plt.plot(r_values, distances, marker='o')
-plt.title("Minkowski Distance (r = 1 to 10)")
-plt.xlabel("r (Order)")
-plt.ylabel("Distance")
+plt.title('Scatter Plot of 20 Random Data Points with Classes')
+plt.xlabel('Feature X')
+plt.ylabel('Feature Y')
+plt.legend()
 plt.grid(True)
 plt.show()
