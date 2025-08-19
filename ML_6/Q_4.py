@@ -3,17 +3,7 @@ import numpy as np
 
 # Function for binning
 def binning(column, bins=4, method='width'):
-    """
-    Bins a continuous column into categorical values.
     
-    Parameters:
-        column (pd.Series): The feature column to bin
-        bins (int): Number of bins (default=4)
-        method (str): 'width' for equal width binning, 'frequency' for equal frequency binning
-    
-    Returns:
-        pd.Series: Categorical binned column
-    """
     if method == 'width':
         # Equal width binning
         return pd.cut(column, bins=bins, labels=[f"Bin{i+1}" for i in range(bins)])
@@ -23,7 +13,7 @@ def binning(column, bins=4, method='width'):
     else:
         raise ValueError("Method should be either 'width' or 'frequency'")
 
-# Example entropy function
+# entropy function
 def entropy(y):
     probs = y.value_counts(normalize=True)
     return -sum(probs * np.log2(probs))
@@ -58,7 +48,6 @@ def find_root_node(df, target, binning_method='width', bins=4):
     
     return best_feature, best_ig
 
-# ------------------- Example Usage -------------------
 # Sample dataset
 df = pd.read_excel("DataSet2.xlsx")
 target_col = "failure"
