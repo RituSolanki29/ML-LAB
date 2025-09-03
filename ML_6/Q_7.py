@@ -3,11 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.tree import DecisionTreeClassifier
 
-# A7. Decision Boundary Visualization
 def visualize_decision_boundary(df, feature1, feature2, target="failure", max_depth=3):
-    """
-    Visualize decision boundary using 2 features of dataset with Decision Tree
-    """
     # Extract 2 features
     X = df[[feature1, feature2]].values
     y = df[target].values
@@ -36,7 +32,6 @@ def visualize_decision_boundary(df, feature1, feature2, target="failure", max_de
 
 
 if __name__ == "__main__":
-    # Load dataset
     df = pd.read_excel("DataSet2.xlsx")
 
     # Automatically select first two numeric features

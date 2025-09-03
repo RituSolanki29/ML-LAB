@@ -230,3 +230,12 @@ results_df = results_df.sort_values(by="Test_F1", ascending=False)
 
 print("\n\n===== Summary results (sorted by Test F1) =====")
 print(results_df.to_string(index=False))
+
+
+#Precision → % of predicted failures that were actually failures.
+#Recall → % of real failures that were detected.
+#F1 → balance of precision & recall.
+#SVM C: penalty for misclassification (small C = more regularization).
+# Dicission tree, Controls tree depth (more depth = more complex).
+# Random forest, Number of trees in the forest. Larger = usually better, but slower
+#cv == how well model is generalizing on unseen data
