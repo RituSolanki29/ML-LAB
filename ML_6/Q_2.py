@@ -13,3 +13,6 @@ def calculate_gini(series):
 
 gini_value = calculate_gini(df['failure'])
 print("Gini Index:", gini_value)
+
+#completed
+
